@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\{{ model }}Request;
+use App\Interfaces\{{ model }}Interface;
+use App\Helpers\ApiResponse;
+use Illuminate\Http\JsonResponse;
+
+class {{ model }}Controller extends Controller
+{
+    public function __construct(
+        private {{ model }}Interface ${{ variable }}
+    ) {}
+
+    public function index(): JsonResponse
+    {
+        return ApiResponse::success($this->{{ variable }}->all(), '{{ model }} list retrieved successfully');
+    }
+
+    public function store({{ model }}Request $request): JsonResponse
+    {
+        $data = $this->{{ variable }}->create($request->validatedData());
+        return ApiResponse::success($data, '{{ model }} created successfully');
+    }
+
+    public function show($id): JsonResponse
+    {
+        $data = $this->{{ variable }}->find($id);
+        return ApiResponse::success($data, '{{ model }} details fetched successfully');
+    }
+
+    public function update({{ model }}Request $request, $id): JsonResponse
+    {
+        $data = $this->{{ variable }}->update($id, $request->validatedData());
+        return ApiResponse::success($data, '{{ model }} updated successfully');
+    }
+
+    public function destroy($id): JsonResponse
+    {
+        $this->{{ variable }}->delete($id);
+        return ApiResponse::success(null, '{{ model }} deleted successfully');
+    }
+}

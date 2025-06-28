@@ -1,0 +1,20 @@
+{
+  "name": "muhammadsami/laravel-crud-generator",
+  "description": "Laravel CRUD Generator using Repository Pattern by Muhammad Sami",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "MuhammadSami\\CrudGenerator\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MuhammadSami\\CrudGenerator\\CrudGeneratorServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
