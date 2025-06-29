@@ -31,6 +31,10 @@ Install via Composer:
 composer require muhammadsami/laravel-crud-generator
 
 
+2. Publish stub files:
+
+php artisan vendor:publish --tag=crud-stubs
+
 
 ⚡ Usage
 Run the command to scaffold a full CRUD:
@@ -65,14 +69,15 @@ public function register()
         \App\Repositories\ProductRepository::class
     );
 }
-2. Define Routes
+3. Define Routes
 In routes/api.php:
 
-
+//Example
 use App\Http\Controllers\Api\ProductController;
 
 Route::apiResource('products', ProductController::class);
-3. Customize Migration
+
+4. Customize Migration
 You can modify the generated migration file before running:
 
 php artisan migrate
