@@ -36,6 +36,15 @@ class GenerateCrud extends Command
             ]);
         }
 
+        // ✅ Generate ApiResponse helper if not already created
+        $helperPath = app_path('Helpers/ApiResponse.php');
+        File::ensureDirectoryExists(app_path('Helpers'));
+
+        if (!File::exists($helperPath)) {
+            $this->generateFromStub('api-response', $helperPath, []);
+            $this->info("✅ ApiResponse helper created at app/Helpers/ApiResponse.php");
+        }
+
         $this->info("✅ CRUD for {$name} generated successfully.");
         $this->warn("ℹ️ Please bind {$name}Interface to {$name}Repository in AppServiceProvider.");
     }
