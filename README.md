@@ -7,7 +7,8 @@
 **Generate Laravel CRUD boilerplate using the Repository Pattern — in seconds.**  
 Built with  by [Muhammad Sami](https://www.linkedin.com/in/muhammad-sami-600700182/)
 
-![Demo](https://raw.githubusercontent.com/muhammadsami-dev/laravel-crud-generator/main/preview.png)
+![Uploading image.png…]()
+
 
 ---
 
