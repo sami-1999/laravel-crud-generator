@@ -14,7 +14,7 @@ class {{ model }}Repository implements {{ model }}Interface
 
     public function find($id)
     {
-        return {{ model }}::withTrashed()->findOrFail($id);
+        return {{ model }}::findOrFail($id);
     }
 
     public function create(array $data)
@@ -24,7 +24,7 @@ class {{ model }}Repository implements {{ model }}Interface
 
     public function update($id, array $data)
     {
-        $model = {{ model }}::withTrashed()->findOrFail($id);
+        $model = {{ model }}::findOrFail($id);
         $model->update($data);
         return $model;
     }
