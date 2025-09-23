@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\{{ model }};
+use App\Http\Requests\{{ model }}Request;
+use Illuminate\Http\JsonResponse;
+
+class {{ model }}Controller extends Controller
+{
+    public function index(): JsonResponse
+    {
+        $data = {{ model }}::paginate(10);
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} list retrieved successfully',
+            'data' => $data,
+        ]);
+    }
+
+    public function store({{ model }}Request $request): JsonResponse
+    {
+        $data = {{ model }}::create($request->validated());
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} created successfully',
+            'data' => $data,
+        ], 201);
+    }
+
+    public function show(int $id): JsonResponse
+    {
+        $data = {{ model }}::findOrFail($id);
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} details fetched successfully',
+            'data' => $data,
+        ]);
+    }
+
+    public function update({{ model }}Request $request, int $id): JsonResponse
+    {
+        $model = {{ model }}::findOrFail($id);
+        $model->update($request->validated());
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} updated successfully',
+            'data' => $model,
+        ]);
+    }
+
+    public function destroy(int $id): JsonResponse
+    {
+        $model = {{ model }}::findOrFail($id);
+        $model->delete();
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} deleted successfully',
+            'data' => null,
+        ]);
+    }
+}

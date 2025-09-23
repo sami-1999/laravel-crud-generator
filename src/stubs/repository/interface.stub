@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Interfaces;
+
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Models\{{ model }};
+
+interface {{ model }}Interface
+{
+    public function all(): LengthAwarePaginator;
+    public function find(int $id): {{ model }};
+    public function create(array $data): {{ model }};
+    public function update(int $id, array $data): {{ model }};
+    public function delete(int $id): {{ model }};
+}

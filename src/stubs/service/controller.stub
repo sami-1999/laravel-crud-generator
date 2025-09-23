@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\{{ model }}Request;
+use App\Services\{{ model }}Service;
+use Illuminate\Http\JsonResponse;
+
+class {{ model }}Controller extends Controller
+{
+    public function __construct(
+        private readonly {{ model }}Service $service
+    ) {}
+
+    public function index(): JsonResponse
+    {
+        $data = $this->service->all();
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} list retrieved successfully',
+            'data' => $data,
+        ]);
+    }
+
+    public function store({{ model }}Request $request): JsonResponse
+    {
+        $data = $this->service->create($request->validated());
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} created successfully',
+            'data' => $data,
+        ], 201);
+    }
+
+    public function show(int $id): JsonResponse
+    {
+        $data = $this->service->find($id);
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} details fetched successfully',
+            'data' => $data,
+        ]);
+    }
+
+    public function update({{ model }}Request $request, int $id): JsonResponse
+    {
+        $data = $this->service->update($id, $request->validated());
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} updated successfully',
+            'data' => $data,
+        ]);
+    }
+
+    public function destroy(int $id): JsonResponse
+    {
+        $this->service->delete($id);
+        
+        return response()->json([
+            'success' => true,
+            'message' => '{{ model }} deleted successfully',
+            'data' => null,
+        ]);
+    }
+}
